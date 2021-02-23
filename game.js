@@ -1,6 +1,10 @@
 const question = document.getElementById("question");
 const choices = Array.from(document.getElementsByClassName("choice-text")); 
 /* to change HTMLcollection to array */
+const progressText = document.getElementById("progressText");
+const scoreText = document.getElementById("score");
+const progressFull = document.getElementsByClassName("progressBarFull");
+
 
 let currentQuestion = {};
 let acceptingAnswers = false;
@@ -55,6 +59,12 @@ getNewQuestion = () => {
     };
     
     questionCounter ++;
+    progressText.innerText = `Question ${questionCounter}/${MAX_QUESTIONS}`;
+
+    //Update the progress bar
+    progressBarFull.style.width = `${(questionCounter / MAX_QUESTIONS) * 100}%`;
+
+
     const questionIndex = Math.floor(Math.random() * availableQuestions.length);
     currentQuestion = availableQuestions[questionIndex];
     question.innerText = currentQuestion.question;
@@ -84,9 +94,12 @@ choices.forEach(choice => {
             classToApply = "correct";
         }; /* used == because the right hand is string. Set the default value to incorrect and use if statement
         to change it to correct if the condition is true */
-
         /* The above can be written as: 
         const classToApply = selectedAnswer == currentQuestion.answer ? 'correct' : 'incorrect' */
+        if (classToApply === "correct") {
+            incrementScore(CORRECT_BONUS);
+        };
+        
         selectedChoice.parentElement.classList.add(classToApply);
         //to add the class to the parent element of selected choice text
         
@@ -100,5 +113,10 @@ choices.forEach(choice => {
        
     });
 });
+
+incrementScore = num => {
+    score += num;
+    scoreText.innerText = score;
+};
 
 startGame();
