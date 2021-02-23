@@ -42,7 +42,7 @@ const MAX_QUESTIONS = 3;
 startGame = () => {
     questionCounter = 0;
     score = 0;
-    availableQuestions =[...questions];
+    availableQuestions =[...questions]; //why??
  
     getNewQuestion();
 };
@@ -79,7 +79,25 @@ choices.forEach(choice => {
        const selectedChoice = e.target;
        const selectedAnswer = selectedChoice.dataset["number"];
 
-       getNewQuestion();
+        let classToApply = "incorrect";
+        if (selectedAnswer == currentQuestion.answer) {
+            classToApply = "correct";
+        }; /* used == because the right hand is string. Set the default value to incorrect and use if statement
+        to change it to correct if the condition is true */
+
+        /* The above can be written as: 
+        const classToApply = selectedAnswer == currentQuestion.answer ? 'correct' : 'incorrect' */
+        selectedChoice.parentElement.classList.add(classToApply);
+        //to add the class to the parent element of selected choice text
+        
+        setTimeout(() => {
+            selectedChoice.parentElement.classList.remove(classToApply);
+            /*this is to remove the color once the option is selected.
+            the setTimeout is required because when add & remove class are applied without time delay,
+            both won't be applied.  */
+            getNewQuestion();
+        }, 1000);
+       
     });
 });
 
