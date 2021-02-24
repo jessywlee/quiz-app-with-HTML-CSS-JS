@@ -6,7 +6,7 @@ const mostRecentScore = localStorage.getItem("mostRecentScore");
 const highScores = JSON.parse(localStorage.getItem("highScores")) || [];
 //because the value in local storage is a string
 const MAX_HIGH_SCORES = 5;
-console.log(highScores);
+
 
 finalScore.innerText = mostRecentScore;
 
@@ -21,7 +21,7 @@ saveHighScore = (e) => {
     e.preventDefault();
     /* to prevent the default because forms by default will submit to a new page  */
     const scoreBoard = {
-        score: Math.floor(Math.random()*100),
+        score: mostRecentScore,
         name: username.value
     };
 
@@ -30,7 +30,7 @@ saveHighScore = (e) => {
     highScores.splice(MAX_HIGH_SCORES); //to only keep top 5
 
     localStorage.setItem("highScores", JSON.stringify(highScores));
-    console.log(highScores);
+   
     window.location.assign("index.html");
 
 };
