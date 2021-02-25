@@ -35,7 +35,7 @@
     background-color: #dc3545;
 }
 
-/*HUD */
+/* HUD */
 
 #hud {
     display: flex;
@@ -62,4 +62,24 @@
       height: 3.4rem;
       background-color: #56a5eb;
       width: 50%;
+  }
+
+/* LOADER */
+  #loader {
+      border: 1.4rem solid white;
+      border-radius: 50%;
+      border-top: 1.6rem solid #DBD9D6;
+      width: 10rem;
+      height: 10rem;
+      animation: spin 2s linear infinite;
+  }
+
+  @keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
   }

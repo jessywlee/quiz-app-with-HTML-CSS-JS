@@ -4,7 +4,8 @@ const choices = Array.from(document.getElementsByClassName("choice-text"));
 const progressText = document.getElementById("progressText");
 const scoreText = document.getElementById("score");
 const progressFull = document.getElementsByClassName("progressBarFull");
-
+const loader = document.getElementById("loader");
+const game = document.getElementById("game");
 
 let currentQuestion = {};
 let acceptingAnswers = false;
@@ -13,15 +14,39 @@ let quesitonCounter = 0;
 let availableQuestions =[];
 let questions = [];
 
-
-fetch("questions.json").then(res => {
-    return res.json();
-}).then( loadedQuestions => {
-    
-    questions = loadedQuestions;
-    startGame();
+/*to fetch data from json file instead of hard coding the questions.  
+Note that fetching local path doesn't work for security reasons, so you need
+https URL scheme*/
+fetch("https://opentdb.com/api.php?amount=10&category=18&difficulty=easy&type=multiple")
+.then(res => {
+    return res.json(); 
+    /* The json() method of the Body mixin takes a Response stream and reads it to completion. 
+    It returns a promise that resolves with the result of parsing the body text as JSON. */
 })
-.catch( err => {
+.then( loadedQuestions => {
+    
+    questions = loadedQuestions.results.map( loadedQuestion => {
+        const formattedQuestion = {
+            question: loadedQuestion.question
+        };
+
+        const answerChoices = [...loadedQuestion.incorrect_answers];
+        formattedQuestion.answer = Math.floor(Math.random() * 4) + 1; 
+        //to get a randome index of correct answer and save it to the object.
+        answerChoices.splice(formattedQuestion.answer-1, 0, loadedQuestion.correct_answer);
+        //the array has only 3 elements, so need to minus 2.
+        answerChoices.forEach((choice, index) => {
+            formattedQuestion["choice" + (index + 1)] = choice;
+        });
+       
+        console.log(formattedQuestion);
+      
+        return formattedQuestion;
+    });
+    //questions = loadedQuestions;
+    startGame();
+
+}).catch( err => {
     console.error(err);
 })
 
@@ -35,8 +60,11 @@ startGame = () => {
     questionCounter = 0;
     score = 0;
     availableQuestions =[...questions]; //why??
- 
+
     getNewQuestion();
+    game.classList.remove("hidden");
+    loader.classList.add("hidden");
+    
 };
 
 getNewQuestion = () => {
@@ -57,7 +85,7 @@ getNewQuestion = () => {
     const questionIndex = Math.floor(Math.random() * availableQuestions.length);
     currentQuestion = availableQuestions[questionIndex];
     question.innerText = currentQuestion.question;
-    /* HTML question's innertext is set to currentquetion's question (key name) property */
+    /* HTML question's innertext is set to currentquestion's question (key name) property */
     choices.forEach((choice) => {
         const number = choice.dataset['number'];
         choice.innerText = currentQuestion['choice' + number];
@@ -73,7 +101,7 @@ getNewQuestion = () => {
 choices.forEach(choice => {
     choice.addEventListener('click', e => {
        if(!acceptingAnswers) return;
-        /*if we are not reading to get answers, ignore the click */
+        /*if we are not ready to get answers, ignore the click */
        acceptingAnswers = false;
        const selectedChoice = e.target;
        const selectedAnswer = selectedChoice.dataset["number"];
