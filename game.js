@@ -32,9 +32,9 @@ fetch("https://opentdb.com/api.php?amount=10&category=18&difficulty=easy&type=mu
 
         const answerChoices = [...loadedQuestion.incorrect_answers];
         formattedQuestion.answer = Math.floor(Math.random() * 4) + 1; 
-        //to get a randome index of correct answer and save it to the object.
+        //to get a random index of correct answer and save it to the object.
         answerChoices.splice(formattedQuestion.answer-1, 0, loadedQuestion.correct_answer);
-        //the array has only 3 elements, so need to minus 2.
+    
         answerChoices.forEach((choice, index) => {
             formattedQuestion["choice" + (index + 1)] = choice;
         });
