@@ -1,26 +1,77 @@
 [
     {
-      "question": "Inside which HTML element do we put the JavaScript??",
-      "choice1": "<script>",
-      "choice2": "<javascript>",
-      "choice3": "<js>",
-      "choice4": "<scripting>",
+      "question": "생성자 함수의 인스턴스 생성 과정으로 옳은 것은?",
+      "choice1": "인스턴스 초기화 -> 인스턴스 생성과 this 바인딩 -> 인스턴스 반환",
+      "choice2": "인스턴스 생성과 this 바인딩 -> 인스턴스 초기화 -> 인스턴스 반환",
+      "choice3": "인스턴스 반환 -> 인스턴스 초기화 -> 인스턴스 생성과 this 바인딩",
+      "choice4": "인스턴스 생성 -> 인스턴스 초기화 -> 인스턴스 반환",
+      "answer": 2
+    },
+    {
+      "question": "함수 선언문 또는 함수 표현식으로 정의한 함수는 일반적인 함수와 생성자 함수 두가지 모두로서 호출 가능하다.",
+      "choice1": "O",
+      "choice2": "X",
+      "choice3": "",
+      "choice4": "",
       "answer": 1
     },
     {
-      "question": "What is the correct syntax for referring to an external script called 'xxx.js'?",
-      "choice1": "<script href='xxx.js'>",
-      "choice2": "<script name='xxx.js'>",
-      "choice3": "<script src='xxx.js'>",
-      "choice4": "<script file='xxx.js'>",
+      "question": "일급 객체에 대한 설명으로 틀린 것은?",
+      "choice1": "변수나 자료구조에 저장할 수 있다.",
+      "choice2": "함수의 매개변수에 전달할 수 있다.",
+      "choice3": "함수의 반환값으로 사용할 수 있다.",
+      "choice4": "런타임 전에 평가된다.",
+      "answer": 4
+    },
+    {
+      "question": "함수 객체의 prototype 프로퍼티는 생성자 함수만이 소유하고, 생성할 인스턴스의 프로토타입 객체를 가리킨다.",
+      "choice1": "O",
+      "choice2": "X",
+      "choice3": "",
+      "choice4": "",
+      "answer": 1
+    },
+    {
+      "question": "접근자 프로퍼티 __proto__ 에 대한 설명으로 틀린것은?",
+      "choice1": "[[prototype]]에 간접적으로 접근할 수 있다.",
+      "choice2": "객체가 직접 소유하는 프로퍼티가 아니다.",
+      "choice3": "자체적으로 값을 갖는다.",
+      "choice4": "[[Get]], [[Set]] 프로퍼티 어트리뷰트로 구성된 프로퍼티다",
       "answer": 3
     },
     {
-      "question": " How do you write 'Hello World' in an alert box?",
-      "choice1": "msgBox('Hello World');",
-      "choice2": "alertBox('Hello World');",
-      "choice3": "msg('Hello World');",
-      "choice4": "alert('Hello World');",
+      "question": "프로토타입의 종점인 Object.prototype의 프로토타입, 즉 [[Prototype]] 내부 슬롯의 값은?",
+      "choice1": "undefined",
+      "choice2": "null",
+      "choice3": "false",
+      "choice4": "{}",
+      "answer": 2
+    },
+    {
+      "question": "?에 들어갈 값을 고르시오",
+      "code": "./img/code2.png",
+      "choice1": "false",
+      "choice2": "null",
+      "choice3": "Object.prototype",
+      "choice4": "undefined",
+      "answer": 4
+    },
+    {
+      "question": "?에 들어갈 값을 고르시오",
+      "code": "./img/code3.png",
+      "choice1": "true",
+      "choice2": "false",
+      "choice3": "",
+      "choice4": "",
+      "answer": 1
+    },
+    {
+      "question": "?에 들어갈 값을 고르시오",
+      "code": "./img/code1.png",
+      "choice1": "true, false",
+      "choice2": "true, true",
+      "choice3": "false, false",
+      "choice4": "false, true",
       "answer": 4
     }
   ]

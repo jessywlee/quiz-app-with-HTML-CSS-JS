@@ -1,3 +1,9 @@
+#code-block {
+    width: 500px;
+    align-self: center;
+    margin-bottom: 20px;
+}
+
 .choice-container {
     display: flex;
     margin-bottom: 0.5rem;
@@ -12,6 +18,12 @@
     box-shadow: 0 0.4rem 1.4rem 0 rgba(86, 185, 235, 0.5);
     transform: translateY(-0.1rem);
     transition: transform 150ms;
+}
+
+.choice-container[disabled]:hover {
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
 }
 
 

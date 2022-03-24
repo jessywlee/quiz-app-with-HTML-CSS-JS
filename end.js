@@ -1,14 +1,22 @@
 const username = document.getElementById("username");
 const saveScoreBtn = document.getElementById("saveScoreBtn");
 const finalScore = document.getElementById("finalScore");
+const finalResult = document.getElementById("finalResult");
 const mostRecentScore = localStorage.getItem("mostRecentScore");
 
 const highScores = JSON.parse(localStorage.getItem("highScores")) || [];
+const results = JSON.parse(sessionStorage.getItem('submittedAnswers'));
 //because the value in local storage is a string
 const MAX_HIGH_SCORES = 5;
 
 
 finalScore.innerText = mostRecentScore;
+
+for (const key in results) {
+    console.log(key)
+    finalResult.innerHTML += `${key} : ${results[key]} <br>`
+}
+
 
 username.addEventListener("keyup", () => {
    saveScoreBtn.disabled = !username.value;
